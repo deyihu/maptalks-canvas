@@ -358,4 +358,15 @@ function coordinate2PointWidthAltitude(map, coordinate) {
     const point = map._pointAtResToContainerPoint(renderPoints, glRes, altitude);
     return point;
 }
+
+var uaParser = new UAParser();
+var uaResult = uaParser.getOS();
+
+function isWindows() {
+    return (uaResult.name && uaResult.name.toLowerCase().indexOf('windows') > -1)
+}
+
+function isLinux() {
+    return (uaResult.name && uaResult.name.toLowerCase().indexOf('linux') > -1)
+}
 /*eslint-enable no-unused-vars */

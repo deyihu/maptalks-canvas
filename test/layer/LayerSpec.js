@@ -4,7 +4,7 @@ describe('Layer.Spec', function () {
     var map;
     var center = new maptalks.Coordinate(118.846825, 32.046534);
     var context = {
-        map : map
+        map: map
     };
 
     beforeEach(function () {
@@ -45,14 +45,14 @@ describe('Layer.Spec', function () {
         });
 
         it('update id', function () {
-            var layer1 = new maptalks.TileLayer('1', { renderer:'canvas' });
+            var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas' });
             map.addLayer(layer1);
             layer1.setId('2');
             expect(layer1).to.be.eql(map.getLayer('2'));
         });
 
         it('prevent loading in onLoad', function (done) {
-            var layer = new maptalks.VectorLayer('1', { renderer:'canvas' });
+            var layer = new maptalks.VectorLayer('1', { renderer: 'canvas' });
             var ready = false;
             layer.onLoad = function () {
                 if (!ready) {
@@ -86,7 +86,7 @@ describe('Layer.Spec', function () {
 
     it('#getMinZoom and #getMaxZoom', function () {
         var layer = new maptalks.VectorLayer('1', {
-            minZoom : 10
+            minZoom: 10
         });
 
         map.addLayer(layer);
@@ -96,7 +96,7 @@ describe('Layer.Spec', function () {
 
     describe('zindex of layers', function () {
         it('default zindex is 0', function () {
-            var layer1 = new maptalks.TileLayer('1', { renderer:'canvas' });
+            var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas' });
             var layer2 = new maptalks.VectorLayer('2');
             var layer3 = new maptalks.VectorLayer('3');
 
@@ -110,7 +110,7 @@ describe('Layer.Spec', function () {
         });
 
         it('setZIndex to bring a layer to front', function () {
-            var layer1 = new maptalks.TileLayer('1', { renderer:'canvas' });
+            var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas' });
             var layer2 = new maptalks.VectorLayer('2');
             var layer3 = new maptalks.VectorLayer('3');
 
@@ -129,7 +129,7 @@ describe('Layer.Spec', function () {
         });
 
         it('setZIndex with 1 and to null later, layer should stay at the same index', function () {
-            var layer1 = new maptalks.TileLayer('1', { renderer:'canvas' });
+            var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas' });
             var layer2 = new maptalks.VectorLayer('2');
             var layer3 = new maptalks.VectorLayer('3');
 
@@ -145,7 +145,7 @@ describe('Layer.Spec', function () {
         });
 
         it('setZIndex to null, layer index should not change', function () {
-            var layer1 = new maptalks.TileLayer('1', { renderer:'canvas' });
+            var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas' });
             var layer2 = new maptalks.VectorLayer('2');
             var layer3 = new maptalks.VectorLayer('3');
 
@@ -158,7 +158,7 @@ describe('Layer.Spec', function () {
         });
 
         it('remove a layer with z index', function () {
-            var layer1 = new maptalks.TileLayer('1', { renderer:'canvas' });
+            var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas' });
             var layer2 = new maptalks.VectorLayer('2');
             var layer3 = new maptalks.VectorLayer('3');
 
@@ -178,7 +178,7 @@ describe('Layer.Spec', function () {
         });
 
         it('setZIndex before adding to map to bring a layer to front', function () {
-            var layer1 = new maptalks.TileLayer('1', { renderer:'canvas' });
+            var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas' });
             var layer2 = new maptalks.VectorLayer('2');
             var layer3 = new maptalks.VectorLayer('3');
 
@@ -196,7 +196,7 @@ describe('Layer.Spec', function () {
         });
 
         it('setZIndex in options before adding to map to bring a layer to front', function () {
-            var layer1 = new maptalks.TileLayer('1', { renderer:'canvas', zIndex : 1 });
+            var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas', zIndex: 1 });
             var layer2 = new maptalks.VectorLayer('2');
             var layer3 = new maptalks.VectorLayer('3');
 
@@ -215,7 +215,7 @@ describe('Layer.Spec', function () {
     describe('change order of layers', function () {
 
         it('bring a layer to front', function () {
-            var layer1 = new maptalks.TileLayer('1', { renderer:'canvas' });
+            var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas' });
             var layer2 = new maptalks.VectorLayer('2');
             var layer3 = new maptalks.VectorLayer('3');
 
@@ -234,7 +234,7 @@ describe('Layer.Spec', function () {
         });
 
         it('bring a layer to back', function () {
-            var layer1 = new maptalks.TileLayer('1', { renderer:'canvas' });
+            var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas' });
             var layer2 = new maptalks.VectorLayer('2');
             var layer3 = new maptalks.VectorLayer('3');
 
@@ -254,18 +254,18 @@ describe('Layer.Spec', function () {
 
         it('sort layers by map and paint', function (done) {
             var layer1 = new maptalks.VectorLayer('1', new maptalks.Circle(map.getCenter(), 100, {
-                symbol : {
-                    polygonFill : '#f00'
+                symbol: {
+                    polygonFill: '#f00'
                 }
             }));
             var layer2 = new maptalks.VectorLayer('2', new maptalks.Circle(map.getCenter(), 100, {
-                symbol : {
-                    polygonFill : '#0f0'
+                symbol: {
+                    polygonFill: '#0f0'
                 }
             }));
             var layer3 = new maptalks.VectorLayer('3', new maptalks.Circle(map.getCenter(), 100, {
-                symbol : {
-                    polygonFill : '#00f'
+                symbol: {
+                    polygonFill: '#00f'
                 }
             }));
             map.once('renderend', function () {
@@ -288,10 +288,10 @@ describe('Layer.Spec', function () {
 
         beforeEach(function () {
             mask = new maptalks.Marker(map.getCenter(), {
-                symbol:{
-                    markerType:'ellipse',
-                    markerWidth:400,
-                    markerHeight:400
+                symbol: {
+                    markerType: 'ellipse',
+                    markerWidth: 400,
+                    markerHeight: 400
                 }
             });
 
@@ -300,9 +300,9 @@ describe('Layer.Spec', function () {
 
         it('to a tile layer', function () {
             var tilelayer = new maptalks.TileLayer('tile with mask', {
-                urlTemplate:'http://www.aacaward.com/jiema/html/data/aac/{z}/{x}/{y}.png',
-                subdomains:[1, 2, 3, 4],
-                renderer : 'canvas'
+                urlTemplate: 'http://www.aacaward.com/jiema/html/data/aac/{z}/{x}/{y}.png',
+                subdomains: [1, 2, 3, 4],
+                renderer: 'canvas'
             });
             map.addLayer(tilelayer);
             tilelayer.setMask(mask);
@@ -333,13 +333,13 @@ describe('Layer.Spec', function () {
     });
 
     it('change opacity', function (done) {
-        var layer1 = new maptalks.TileLayer('1', { renderer:'canvas' });
+        var layer1 = new maptalks.TileLayer('1', { renderer: 'canvas' });
         var layer2 = new maptalks.VectorLayer('2', new maptalks.Marker(map.getCenter(), {
-            symbol : {
-                markerType : 'ellipse',
-                markerWidth : 10,
-                markerHeight : 10,
-                markerFill : '#f00'
+            symbol: {
+                markerType: 'ellipse',
+                markerWidth: 10,
+                markerHeight: 10,
+                markerFill: '#f00'
             }
         }));
         map.addLayer([layer2]);
@@ -377,8 +377,37 @@ describe('Layer.Spec', function () {
         // }, 60);
     });
 
+    it('change opacity when has mask', function (done) {
+        var layer1 = new maptalks.TileLayer('1', {
+            renderer: 'canvas',
+            urlTemplate: 'resources/tile-red-256.png'
+        }).addTo(map);
+
+
+        expect(layer1.getOpacity()).to.be.eql(1);
+
+
+        layer1.setOpacity(0.5);
+        expect(layer1.getOpacity()).to.be.eql(0.5);
+        const extent = map.getExtent();
+
+        const mask = new maptalks.Polygon([...extent.toArray()]);
+        layer1.setMask(mask);
+
+        setTimeout(() => {
+            var canvas = map.getRenderer().canvas;
+            var size = map.getSize().toPoint();
+            var context = canvas.getContext('2d');
+            var imgData = context.getImageData(Math.round(size.x / 2), Math.round(size.y / 2), 1, 1).data;
+            expect([...imgData]).to.be.eql([255, 0, 0, 128]);
+            done();
+        }, 1000);
+
+    });
+
+
     it('#getCollisionIndex', function () {
-        var layer = new maptalks.TileLayer('1', { renderer:'canvas' });
+        var layer = new maptalks.TileLayer('1', { renderer: 'canvas' });
         expect(layer.getCollisionIndex()).to.be.ok();
 
         layer.config('collisionScope', 'map');
@@ -396,7 +425,7 @@ describe('Layer.Spec', function () {
             var ctx = COMMON_CREATE_MAP(center, null, {
                 width: 500,
                 height: 500,
-                zoomAnimationDuration : 50,
+                zoomAnimationDuration: 50,
                 zoom: 14,
             });
             innerMap = ctx.map;
